@@ -234,4 +234,14 @@
     itemText.text = @"";
 }
 
+- (IBAction)tappedLogout:(id)sender {
+	[self.todoService.client logout];
+
+	for (NSHTTPCookie *value in [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies) {
+		[[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:value];
+	}
+
+	[self login];
+}
+
 @end

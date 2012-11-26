@@ -22,5 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)onAdd:(id)sender;
+- (IBAction)tappedLogout:(id)sender;
 
 @end
