@@ -1,1 +1,1 @@
-Enhanced WAMS quickstart sample with Google authN, graph integration, pull-to-refresh, push notifications, decoupling via NSNotificationCenter
+Enhanced WAMS quickstart sample with Google authN, graph integration, pull-to-refresh, push notifications, decoupling via NSNotificationCenter, integration with Service Bus queues (including Windows Forms monitoring tool).
