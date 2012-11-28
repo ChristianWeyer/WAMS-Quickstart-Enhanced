@@ -1,6 +1,6 @@
 function insert(item, user, request) {
     var azure = require('azure'); 
-    var deviceRegistrationService = azure.createServiceBusService('YOUR_NS', 'YOUR_OWNER_SECRET'); 
+    var deviceRegistrationService = azure.createServiceBusService('YOUR_NS', 'YOUR_OWNER_KEY'); 
     
     var message = {
         body: item.deviceToken

@@ -30,7 +30,9 @@ function insert(item, user, request) {
                     var userData = JSON.parse(body);
                     item.userName = userData.name;
                     request.execute();
-                    sendNotifications();
+                    
+                    sendAPNSNotifications();
+                    sendWNSNotifications();
                 } catch (ex) {
                     console.error('Error parsing response from the provider API: ', ex);
                     request.respond(statusCodes.INTERNAL_SERVER_ERROR, ex);
@@ -46,25 +48,45 @@ function insert(item, user, request) {
     } else {
         // Insert with default user name: REALLY?
         request.execute();
-        sendNotifications();
+        sendAPNSNotifications();
+        sendWNSNotifications();
     }
 
-    function sendNotifications() {
+    function sendWNSNotifications() {
+        var channelTable = tables.getTable('Channel');
+        
+        channelTable.read({
+            success: function(channels) {
+                console.log(JSON.stringify(channels));
+                
+                channels.forEach(function(channel) {
+                    push.wns.sendToastText04(channel.uri, {
+                        text1: item.text
+                    }, {
+                        success: function(pushResponse) {
+                            console.log("Sent WNS push:", pushResponse);
+                        }
+                    });
+                });
+            }
+        });
+    }
+    
+    function sendAPNSNotifications() {
         var devicesTable = tables.getTable('Devices');
           
         devicesTable.read({
             success: function(devices) {
-                console.log(JSON.stringify(devices));
-                setTimeout(function() {
-                    devices.forEach(function(device) {
-                        push.apns.send(device.deviceToken, {
-                            alert: item.text,
-                            payload: {
-                                inAppMessage: "New item arrived: '" + item.text + "'"
-                            }
-                        });
+                console.log(JSON.stringify(devices));     
+                           
+                devices.forEach(function(device) {
+                    push.apns.send(device.deviceToken, {
+                        alert: item.text,
+                        payload: {
+                            inAppMessage: "New item: '" + item.text + "'"
+                        }
                     });
-                }, 2500);
+                });
             }
         });
     }
