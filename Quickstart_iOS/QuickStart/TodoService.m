@@ -66,8 +66,9 @@ TodoService *instance;
 -(TodoService *) init
 {
     // Initialize the Mobile Service client with your URL and key
-    MSClient *newClient = [MSClient clientWithApplicationURLString:@"https://YOUR_MS.azure-mobile.net/"
-                                                withApplicationKey:@"YOUR_KEY"];
+    MSClient *newClient = [MSClient  clientWithApplicationURLString:@"https://YOUR_MS.azure-mobile.net/" withApplicationKey:@"YOUR_APP_KEY"
+                           ];
+    //withApplicationKey:@"sYfTbmOIfTJQlHiPkRMaqWjToXPinA18"
     
     // Add a Mobile Service filter to enable the busy indicator
     self.client = [newClient clientwithFilter:self];
