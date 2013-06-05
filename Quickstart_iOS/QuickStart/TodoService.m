@@ -66,7 +66,7 @@ TodoService *instance;
 -(TodoService *) init
 {
     // Initialize the Mobile Service client with your URL and key
-    MSClient *newClient = [MSClient  clientWithApplicationURLString:@"https://YOUR_MS.azure-mobile.net/" withApplicationKey:@"YOUR_APP_KEY"
+    MSClient *newClient = [MSClient  clientWithApplicationURLString:@"https://wamscw.azure-mobile.net/" withApplicationKey:@"sYfTbmOIfTJQlHiPkRMaqWjToXPinA18"
                            ];
     //withApplicationKey:@"sYfTbmOIfTJQlHiPkRMaqWjToXPinA18"
     

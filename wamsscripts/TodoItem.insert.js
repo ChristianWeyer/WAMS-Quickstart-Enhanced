@@ -83,7 +83,7 @@ function insert(item, user, request) {
                     push.apns.send(device.deviceToken, {
                         alert: item.text,
                         payload: {
-                            inAppMessage: "New item arrived: '" + item.text + "'"
+                            inAppMessage: "New item: '" + item.text + "'"
                         }
                     });
                 });

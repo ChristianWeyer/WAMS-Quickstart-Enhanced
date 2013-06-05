@@ -1,4 +1,5 @@
 function insert(item, user, request) {
+    // some comment...
     var channelTable = tables.getTable('Channel');
     channelTable
         .where({ uri: item.uri })
